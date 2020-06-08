@@ -1,16 +1,22 @@
 import React from "react";
+import { AppLoading } from "expo";
 import { StatusBar, StyleSheet } from "react-native";
-import { Roboto_400, Roboto_500Medium } from "@expo-google-fonts/roboto";
-import { Ubunto_700Bold, useFonts } from "@expo-google-fonts/ubuntu";
+import { Roboto_400Regular, Roboto_500Medium } from "@expo-google-fonts/roboto";
+import { Ubuntu_700Bold, useFonts } from "@expo-google-fonts/ubuntu";
 
-import Home from "./src/Pages/Home";
+import Routes from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Roboto_400,
+    Roboto_400Regular,
     Roboto_500Medium,
-    Ubunto_700Bold,
+    Ubuntu_700Bold,
   });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <>
       <StatusBar
@@ -18,7 +24,7 @@ export default function App() {
         backgroundColor="transparent" // utilizado para android
         translucent //coloca os elementos para ficar em baixo, caso contrario fica com cor fixa
       />
-      <Home />
+      <Routes />
     </>
   );
 }
